@@ -54,10 +54,18 @@ class Count extends Component {
 
 const mapStateToProps = (state) => ({ count: state });
 
-const mapDispatchToProps = (dispatch) => ({
-  add: (value) => dispatch(createIncrementAction(value)),
-  cut: (value) => dispatch(createDecrementAction(value)),
-  asyncAdd: (value, time) => dispatch(createIncrementAsyncAction(value, time))
-});
+// const mapDispatchToProps = (dispatch) => ({
+//   add: (value) => dispatch(createIncrementAction(value)),
+//   cut: (value) => dispatch(createDecrementAction(value)),
+//   asyncAdd: (value, time) => dispatch(createIncrementAsyncAction(value, time))
+// });
+// 也可以使用 key 对应一个action方法的对象
+// react-redux可以自动转化
+const mapDispatchToProps = {
+  add:createIncrementAction,
+  cut:createDecrementAction,
+  asyncAdd:createIncrementAsyncAction
+};
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Count);
